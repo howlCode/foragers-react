@@ -1,0 +1,9 @@
+.navbar-brand {
+  margin-left: 40px;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.navbar-item {
+  font-size: 0.9rem;
+}
