@@ -42,16 +42,32 @@ class Header extends Component {
           >
             <div className="navbar-start" />
             <div className="navbar-end">
-              <Link className="navbar-item" to={"/shrooms"}>
+              <Link
+                className="navbar-item"
+                to={"/shrooms"}
+                onClick={this.toggleNav}
+              >
                 Mushroom Database
               </Link>
-              <Link className="navbar-item" to={"/shop"}>
+              <Link
+                className="navbar-item"
+                to={"/shop"}
+                onClick={this.toggleNav}
+              >
                 Shop
               </Link>
-              <Link className="navbar-item" to={"/courses"}>
+              <Link
+                className="navbar-item"
+                to={"/courses"}
+                onClick={this.toggleNav}
+              >
                 Education
               </Link>
-              <Link className="navbar-item" to={"/about"}>
+              <Link
+                className="navbar-item"
+                to={"/about"}
+                onClick={this.toggleNav}
+              >
                 About
               </Link>
             </div>

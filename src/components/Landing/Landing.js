@@ -16,20 +16,20 @@ const Landing = () => {
         </div>
       </div>
       <section className="section landing-background">
-        <div class="container has-text-centered">
-          <div class="columns">
-            <div class="column service-panel">
-              <i class="fa fa-eye fa-3x" aria-hidden="true" />
-              <h3 class="subtitle">Hunting</h3>
+        <div className="container has-text-centered">
+          <div className="columns">
+            <div className="column service-panel">
+              <i className="fa fa-eye fa-3x" aria-hidden="true" />
+              <h3 className="subtitle">Hunting</h3>
               <p>
                 We practice extensive wild foraging and mushroom gathering. We
                 are passionate about helping our community become better
                 foragers!
               </p>
             </div>
-            <div class="column service-panel">
-              <i class="fa fa-graduation-cap fa-3x" aria-hidden="true" />
-              <h3 class="subtitle">Education</h3>
+            <div className="column service-panel">
+              <i className="fa fa-graduation-cap fa-3x" aria-hidden="true" />
+              <h3 className="subtitle">Education</h3>
               <p>
                 We maintain an extensive <Link to={"/shrooms"}>database</Link>{" "}
                 of our findings and offer one-on-one{" "}
@@ -37,9 +37,9 @@ const Landing = () => {
                 with mushrooms!
               </p>
             </div>
-            <div class="column service-panel">
-              <i class="fa fa-balance-scale fa-3x" aria-hidden="true" />
-              <h3 class="subtitle">Sales</h3>
+            <div className="column service-panel">
+              <i className="fa fa-balance-scale fa-3x" aria-hidden="true" />
+              <h3 className="subtitle">Sales</h3>
               <p>
                 You can even purchase cool swag in the{" "}
                 <Link to={"/shop"}>shop</Link>!
