@@ -1,0 +1,8 @@
+.modal-content {
+  font-weight: bold;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 0.5px;
+  background: transparent;
+}

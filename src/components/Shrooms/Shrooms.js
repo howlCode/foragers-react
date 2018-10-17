@@ -1,15 +1,34 @@
 import React, { Component } from "react";
 import "./Shrooms.css";
+import ShroomModal from "./ShroomModal";
 import shrooms from "./dummy_data/shrooms_dev";
 
 class Shrooms extends Component {
+  state = {
+    shroom: [],
+    isOpen: false
+  };
+
+  shroomModal = shroom => {
+    this.setState({ shroom: shroom, isOpen: true });
+  };
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
   render() {
     return (
       <section className="section">
         <div className="container is-fluid">
           <div className="columns is-multiline">
             {shrooms.map(shroom => (
-              <div className="column is-one-third" key={shroom.id}>
+              <div
+                className="column is-one-third"
+                key={shroom.id}
+                onClick={() => this.shroomModal(shroom)}
+              >
                 <figure className="image is-5by4">
                   <img src={shroom.image} alt={shroom.common_name} />
                 </figure>
@@ -29,6 +48,13 @@ class Shrooms extends Component {
             ))}
           </div>
         </div>
+        {this.state.shroom.length !== 0 ? (
+          <ShroomModal
+            shroom={this.state.shroom}
+            onClose={this.toggleModal}
+            show={this.state.isOpen}
+          />
+        ) : null}
       </section>
     );
   }
