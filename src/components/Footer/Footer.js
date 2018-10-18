@@ -6,7 +6,8 @@ const Footer = () => {
       className="footer"
       style={{
         backgroundColor: "#363636",
-        color: "#fff"
+        color: "#fff",
+        height: "150px"
       }}
     >
       <div className="content is-small has-text-centered">
