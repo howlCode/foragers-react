@@ -5,9 +5,21 @@ import shrooms from "./dummy_data/shrooms_dev";
 
 class Shrooms extends Component {
   state = {
+    shrooms: shrooms,
+    filteredShrooms: shrooms,
+    genus: [],
     shroom: [],
     isOpen: false
   };
+
+  componentDidMount() {
+    let genusPool = [];
+    this.state.shrooms.map(genus => {
+      genusPool.push(genus.genus);
+      return genusPool;
+    });
+    this.setState({ genus: genusPool });
+  }
 
   shroomModal = shroom => {
     this.setState({ shroom: shroom, isOpen: true });
@@ -18,12 +30,41 @@ class Shrooms extends Component {
       isOpen: !this.state.isOpen
     });
   };
+
+  toggleSelection = selection => {
+    if (selection.target.value !== "all") {
+      const filteredShrooms = this.state.shrooms.filter(
+        shroom => shroom.genus === selection.target.value
+      );
+      this.setState({ filteredShrooms: filteredShrooms });
+    } else {
+      this.setState({ filteredShrooms: shrooms });
+    }
+  };
+
   render() {
     return (
       <section className="section">
         <div className="container is-fluid">
+          <div className="field is-horizontal">
+            <label className="label" style={{ marginRight: "20px" }}>
+              Filter Shrooms
+            </label>
+            <label className="label filter-selector">Genus</label>
+            <div className="has-text-centered control">
+              <div className="select">
+                <select onChange={this.toggleSelection}>
+                  <option value="all">Show All</option>
+                  {this.state.genus.map(genus => (
+                    <option>{genus}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
           <div className="columns is-multiline">
-            {shrooms.map(shroom => (
+            {this.state.filteredShrooms.map(shroom => (
               <div
                 className="column is-one-third"
                 key={shroom.id}

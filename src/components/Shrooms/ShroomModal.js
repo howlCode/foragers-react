@@ -13,13 +13,20 @@ const ShroomModal = props => {
         <p class="image is-4by3">
           <img src={props.shroom.image} alt={props.shroom.common_name} />
         </p>
-        <p className="has-text-light has-text-centered">
+        <p className="has-text-light has-text-centered name">
           {props.shroom.common_name}
         </p>
-        <p className="has-text-light has-text-centered is-italic">
+        <p className="has-text-light has-text-centered is-italic genus">
           {props.shroom.genus}
         </p>
-        <p className="has-text-light has-text-justified">
+        <p className="has-text-centered edibile">
+          <span
+            className={props.shroom.edible ? "tag is-primary" : "tag is-danger"}
+          >
+            {props.shroom.edible ? "Edible" : "Not Edible"}
+          </span>
+        </p>
+        <p className="has-text-light has-text-justified description">
           {props.shroom.description}
         </p>
       </div>
