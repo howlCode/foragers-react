@@ -20,6 +20,13 @@ class Courses extends Component {
     });
   };
 
+  courseStatus = course => {
+    if (course.max_class_size <= course.participants) {
+      return "Full, no spaces available.";
+    }
+    return course.max_class_size - course.participants + " spaces available.";
+  };
+
   render() {
     return (
       <section className="section">
@@ -62,13 +69,13 @@ class Courses extends Component {
           <h2 className="subtitle is-capitalized has-text-bold">
             Sign up for one of our classes!
           </h2>
-          <table className="table is-hoverable is-bordered is-striped is-fullwidth is-hidden-mobile">
+          <table className="table is-hoverable is-bordered is-striped is-fullwidth is-size-7-mobile">
             <thead>
               <tr>
                 <th style={{ width: "30%" }}>Subject</th>
                 <th>Location</th>
                 <th>Date</th>
-                <th style={{ width: "5%" }}>Spaces Remaining</th>
+                <th>Seats</th>
                 <th>Price</th>
               </tr>
             </thead>
@@ -84,25 +91,17 @@ class Courses extends Component {
                   <td>
                     {course.date} - {course.time}
                   </td>
-                  <td>{course.max_class_size - course.participants}</td>
+                  <td>{this.courseStatus(course)}</td>
                   <td>{course.cost}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-
-          <div className="columns is-hidden-desktop is-hidden-tablet is-multiline">
-            {this.state.courses.map(course => (
-              <div className="column is-full-width" key={course.id}>
-                <h3 className="subtitle">{course.title}</h3>
-                <p />
-              </div>
-            ))}
-          </div>
         </div>
         {this.state.course.length !== 0 ? (
           <CourseModal
             course={this.state.course}
+            courseStatus={this.courseStatus(this.state.course)}
             onClose={this.toggleModal}
             show={this.state.isOpen}
           />
