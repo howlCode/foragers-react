@@ -1,5 +1,6 @@
 import React from "react";
 import "./CourseModal.css";
+import CourseMap from "./CourseMap";
 
 const CourseModal = props => {
   if (!props.show) {
@@ -18,6 +19,13 @@ const CourseModal = props => {
           {props.course.date} - {props.course.time} in {props.course.location}{" "}
           at {props.course.facility}{" "}
         </p>
+        <div className="map">
+          <CourseMap
+            latitude={props.course.latitude}
+            longitude={props.course.longitude}
+            location={props.course.facility}
+          />
+        </div>
         <p className="has-text-centered has-text-light status">
           {props.courseStatus}
         </p>

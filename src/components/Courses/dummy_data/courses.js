@@ -8,6 +8,8 @@ const courses = [
     time: "11:00 AM",
     facility: "Umstead Park",
     location: "Raleigh, NC",
+    latitude: 35.8904,
+    longitude: -78.7503,
     max_class_size: 10,
     participants: 5,
     cost: "Free"
@@ -20,6 +22,8 @@ const courses = [
     time: "09:00 AM",
     facility: "Umstead Park",
     location: "Raleigh, NC",
+    latitude: 35.8904,
+    longitude: -78.7503,
     max_class_size: 20,
     participants: 7,
     cost: "$10.00"
@@ -32,6 +36,8 @@ const courses = [
     time: "09:00 AM",
     facility: "Umstead Park",
     location: "Raleigh, NC",
+    latitude: 35.8904,
+    longitude: -78.7503,
     max_class_size: 20,
     participants: 13,
     cost: "$25.00"
@@ -44,6 +50,8 @@ const courses = [
     time: "09:00 AM",
     facility: "Umstead Park",
     location: "Raleigh, NC",
+    latitude: 35.8904,
+    longitude: -78.7503,
     max_class_size: 20,
     participants: 9,
     cost: "$30.00"
