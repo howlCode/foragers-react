@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import "./Courses.css";
 import courses from "./dummy_data/courses";
+import CourseModal from "./CourseModal";
 
 class Courses extends Component {
   state = {
-    courses: courses
+    courses: courses,
+    course: [],
+    isOpen: false
+  };
+
+  courseModal = course => {
+    this.setState({ course: course, isOpen: true });
+  };
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   };
 
   render() {
@@ -61,8 +74,10 @@ class Courses extends Component {
             </thead>
             <tbody>
               {this.state.courses.map(course => (
-                <tr>
-                  <td>{course.title}</td>
+                <tr key={course.id}>
+                  <td className="hand" onClick={() => this.courseModal(course)}>
+                    {course.title}
+                  </td>
                   <td>
                     {course.facility} - {course.location}
                   </td>
@@ -85,6 +100,13 @@ class Courses extends Component {
             ))}
           </div>
         </div>
+        {this.state.course.length !== 0 ? (
+          <CourseModal
+            course={this.state.course}
+            onClose={this.toggleModal}
+            show={this.state.isOpen}
+          />
+        ) : null}
       </section>
     );
   }

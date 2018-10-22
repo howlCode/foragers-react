@@ -2,7 +2,8 @@ const courses = [
   {
     id: 1,
     title: "Shroom Hunting",
-    description: "Learn about shrooms",
+    description:
+      "Join us as we explore the local piedmont and identify common mushrooms in this area. We will likely find Chanterelles and yada yada yada yada yada yada yada.",
     date: "October 29th",
     time: "11:00 AM",
     facility: "Umstead Park",
