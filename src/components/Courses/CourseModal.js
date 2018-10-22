@@ -29,7 +29,7 @@ const CourseModal = props => {
         <p className="has-text-centered has-text-light status">
           {props.courseStatus}
         </p>
-        <p className="has-text-light has-text-justified course-description">
+        <p className="has-text-light has-text-centered course-description">
           {props.course.description}
         </p>
         <p className="has-text-centered">
