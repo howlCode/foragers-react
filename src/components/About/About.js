@@ -14,7 +14,10 @@ const About = () => {
             width: "300px"
           }}
         >
-          <img src={require("./images/headshot.jpg")} />
+          <img
+            src={require("./images/headshot.jpg")}
+            alt="matt king's headshot"
+          />
         </div>
         <br />
         <div className="content">

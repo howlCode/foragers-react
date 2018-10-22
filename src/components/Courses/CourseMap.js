@@ -24,8 +24,7 @@ const CourseMap = props => {
     center: {
       lat: props.latitude,
       lng: props.longitude
-    },
-    zoom: 11
+    }
   };
   return (
     <div style={{ height: "300px", width: "300px" }}>
