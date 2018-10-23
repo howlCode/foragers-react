@@ -63,7 +63,7 @@ class Shop extends Component {
         <div className="columns is-multiline">
           {this.state.filteredProducts.map(product => (
             <div
-              className="column is-one-quarter product-card hand"
+              className="column is-two-fifths product-card hand"
               id={product.id}
               onClick={() => this.productModal(product)}
             >
@@ -73,7 +73,7 @@ class Shop extends Component {
               <p className="product-name has-text-centered">{product.name}</p>
 
               <p className="price-line has-text-centered">
-                <span className="tag is-info price">${product.cost}</span>
+                <span className="has-text-info price">${product.cost}</span>
               </p>
             </div>
           ))}

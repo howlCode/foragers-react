@@ -11,7 +11,11 @@ const ShroomModal = props => {
       <div className="modal-background" />
       <div className="modal-content">
         <p class="image is-4by3">
-          <img src={props.shroom.image} alt={props.shroom.common_name} />
+          <img
+            className="shroom-image"
+            src={props.shroom.image}
+            alt={props.shroom.common_name}
+          />
         </p>
         <p className="has-text-light has-text-centered name">
           {props.shroom.common_name}

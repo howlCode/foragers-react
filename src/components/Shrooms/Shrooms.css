@@ -12,3 +12,7 @@
   margin-top: 8px;
   font-size: 0.8rem !important;
 }
+
+.shroom-image {
+  border: 1px dotted #7f5347;
+}

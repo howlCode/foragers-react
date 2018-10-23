@@ -71,7 +71,11 @@ class Shrooms extends Component {
                 onClick={() => this.shroomModal(shroom)}
               >
                 <figure className="image is-5by4">
-                  <img src={shroom.image} alt={shroom.common_name} />
+                  <img
+                    className="shroom-image"
+                    src={shroom.image}
+                    alt={shroom.common_name}
+                  />
                 </figure>
                 <p className="has-text-weight-bold has-text-centered">
                   {shroom.common_name}
