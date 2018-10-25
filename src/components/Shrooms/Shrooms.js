@@ -14,8 +14,10 @@ class Shrooms extends Component {
 
   componentDidMount() {
     let genusPool = [];
-    this.state.shrooms.map(genus => {
-      genusPool.push(genus.genus);
+    this.state.shrooms.map(shroom => {
+      if (!genusPool.includes(shroom.genus)) {
+        genusPool.push(shroom.genus);
+      }
       return genusPool;
     });
     this.setState({ genus: genusPool });

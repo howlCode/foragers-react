@@ -14,9 +14,9 @@ class Shop extends Component {
 
   componentDidMount() {
     let productTypes = [];
-    this.state.products.map(type => {
-      if (!productTypes.includes(type)) {
-        productTypes.push(type.type);
+    this.state.products.map(product => {
+      if (!productTypes.includes(product.type)) {
+        productTypes.push(product.type);
       }
       return productTypes;
     });
