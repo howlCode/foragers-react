@@ -1,26 +1,30 @@
 import React, { Component } from "react";
 import "./Shop.css";
-import products from "./dummy_data/products";
+import { connect } from "react-redux";
+import { fetchProducts } from "../../actions/productActions";
 import ProductModal from "./ProductModal";
 
 class Shop extends Component {
   state = {
-    products: products,
-    filteredProducts: products,
+    filteredProducts: [],
     types: [],
     product: [],
     isOpen: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.dispatch(fetchProducts());
     let productTypes = [];
-    this.state.products.map(product => {
+    this.props.products.map(product => {
       if (!productTypes.includes(product.type)) {
         productTypes.push(product.type);
       }
       return productTypes;
     });
-    this.setState({ types: productTypes });
+    this.setState({
+      types: productTypes,
+      filteredProducts: this.props.products
+    });
   }
 
   productModal = product => {
@@ -35,16 +39,38 @@ class Shop extends Component {
 
   toggleSelection = selection => {
     if (selection.target.value !== "all") {
-      const filteredProducts = this.state.products.filter(
+      const filteredProducts = this.props.products.filter(
         product => product.type === selection.target.value
       );
       this.setState({ filteredProducts: filteredProducts });
     } else {
-      this.setState({ filteredProducts: products });
+      this.setState({ filteredProducts: this.props.products });
     }
   };
 
   render() {
+    const { error, loading } = this.props;
+
+    if (error) {
+      return (
+        <section className="section">
+          <div className="container">
+            <h1 className="title has-text-danger">Error! {error.message}</h1>
+          </div>
+        </section>
+      );
+    }
+
+    if (loading) {
+      return (
+        <section className="section">
+          <div className="container">
+            <h1 className="title has-text-danger">Loading...</h1>
+          </div>
+        </section>
+      );
+    }
+
     return (
       <section className="section shop">
         <div className="field is-horizontal">
@@ -54,7 +80,7 @@ class Shop extends Component {
               <select onChange={this.toggleSelection}>
                 <option value="all">Show All</option>
                 {this.state.types.map(type => (
-                  <option>{type}</option>
+                  <option key={type}>{type}</option>
                 ))}
               </select>
             </div>
@@ -64,7 +90,7 @@ class Shop extends Component {
           {this.state.filteredProducts.map(product => (
             <div
               className="column is-two-fifths product-card hand"
-              id={product.id}
+              key={product.id}
               onClick={() => this.productModal(product)}
             >
               <div className="image is-128x128 product-image">
@@ -90,4 +116,10 @@ class Shop extends Component {
   }
 }
 
-export default Shop;
+const mapStateToProps = state => ({
+  products: state.products.products,
+  loading: state.products.loading,
+  error: state.products.error
+});
+
+export default connect(mapStateToProps)(Shop);

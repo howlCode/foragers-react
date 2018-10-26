@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import "./Shrooms.css";
 import ShroomModal from "./ShroomModal";
-import shrooms from "./dummy_data/shrooms_dev";
+import { connect } from "react-redux";
+import { fetchShrooms } from "../../actions/shroomActions";
 
 class Shrooms extends Component {
   state = {
-    shrooms: shrooms,
-    filteredShrooms: shrooms,
-    genus: [],
+    filteredShrooms: [],
     shroom: [],
+    genus: [],
     isOpen: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.dispatch(fetchShrooms());
     let genusPool = [];
-    this.state.shrooms.map(shroom => {
+    this.props.shrooms.map(shroom => {
       if (!genusPool.includes(shroom.genus)) {
         genusPool.push(shroom.genus);
       }
       return genusPool;
     });
-    this.setState({ genus: genusPool });
+    this.setState({ genus: genusPool, filteredShrooms: this.props.shrooms });
   }
 
   shroomModal = shroom => {
@@ -34,17 +35,41 @@ class Shrooms extends Component {
   };
 
   toggleSelection = selection => {
-    if (selection.target.value !== "all") {
-      const filteredShrooms = this.state.shrooms.filter(
-        shroom => shroom.genus === selection.target.value
-      );
-      this.setState({ filteredShrooms: filteredShrooms });
-    } else {
-      this.setState({ filteredShrooms: shrooms });
+    if (this.props.shrooms.length !== 0) {
+      if (selection.target.value !== "all") {
+        const filteredShrooms = this.props.shrooms.filter(
+          shroom => shroom.genus === selection.target.value
+        );
+        this.setState({ filteredShrooms: filteredShrooms });
+      } else {
+        this.setState({ filteredShrooms: this.props.shrooms });
+      }
     }
   };
 
   render() {
+    const { error, loading } = this.props;
+
+    if (error) {
+      return (
+        <section className="section">
+          <div className="container">
+            <h1 className="title has-text-danger">Error! {error.message}</h1>
+          </div>
+        </section>
+      );
+    }
+
+    if (loading) {
+      return (
+        <section className="section">
+          <div className="container">
+            <h1 className="title has-text-danger">Loading...</h1>
+          </div>
+        </section>
+      );
+    }
+
     return (
       <section className="section">
         <div className="container is-fluid">
@@ -58,7 +83,7 @@ class Shrooms extends Component {
                 <select onChange={this.toggleSelection}>
                   <option value="all">Show All</option>
                   {this.state.genus.map(genus => (
-                    <option>{genus}</option>
+                    <option key={genus}>{genus}</option>
                   ))}
                 </select>
               </div>
@@ -107,4 +132,10 @@ class Shrooms extends Component {
   }
 }
 
-export default Shrooms;
+const mapStateToProps = state => ({
+  shrooms: state.shrooms.shrooms,
+  loading: state.shrooms.loading,
+  error: state.shrooms.error
+});
+
+export default connect(mapStateToProps)(Shrooms);

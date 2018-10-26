@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -6,6 +7,35 @@ class Header extends Component {
   state = {
     isActive: false
   };
+
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return;
+      case false:
+        return (
+          <Link
+            to={"/portal"}
+            className="navbar-item has-text-info auth-button"
+            onClick={this.toggleNav}
+          >
+            Login
+          </Link>
+        );
+      default:
+        return (
+          <React.Fragment>
+            <a
+              className="navbar-item has-text-danger auth-button"
+              href="/api/logout"
+              onClick={this.toggleNav}
+            >
+              Logout
+            </a>
+          </React.Fragment>
+        );
+    }
+  }
 
   toggleNav = () => {
     this.setState(prevState => ({
@@ -70,6 +100,7 @@ class Header extends Component {
               >
                 About
               </Link>
+              {this.renderContent()}
             </div>
           </div>
         </nav>
@@ -78,4 +109,7 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+export default connect(mapStateToProps)(Header);

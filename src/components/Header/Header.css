@@ -11,3 +11,7 @@ header {
 .navbar-item {
   font-size: 0.9rem;
 }
+
+.auth-button {
+  margin-right: 10px;
+}

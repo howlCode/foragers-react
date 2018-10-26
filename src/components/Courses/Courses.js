@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import "./Courses.css";
-import courses from "./dummy_data/courses";
+import { connect } from "react-redux";
+import { fetchCourses } from "../../actions/courseActions";
 import CourseModal from "./CourseModal";
 
 class Courses extends Component {
   state = {
-    courses: courses,
     course: [],
     isOpen: false
   };
+
+  componentDidMount() {
+    this.props.dispatch(fetchCourses());
+  }
 
   courseModal = course => {
     this.setState({ course: course, isOpen: true });
@@ -28,39 +32,52 @@ class Courses extends Component {
   };
 
   render() {
+    const { error, loading } = this.props;
+
+    if (error) {
+      return (
+        <section className="section">
+          <div className="container">
+            <h1 className="title has-text-danger">Error! {error.message}</h1>
+          </div>
+        </section>
+      );
+    }
+
+    if (loading) {
+      return (
+        <section className="section">
+          <div className="container">
+            <h1 className="title has-text-danger">Loading...</h1>
+          </div>
+        </section>
+      );
+    }
+
     return (
       <section className="section">
         <div className="columns">
           <div className="column">
             <div className="image">
-              <img
-                src={require("./dummy_data/images/hunting.jpg")}
-                alt="hunting"
-              />
+              <img src={require("./images/hunting.jpg")} alt="hunting" />
             </div>
           </div>
 
           <div className="column is-hidden-mobile">
             <div className="image">
-              <img
-                src={require("./dummy_data/images/education.jpg")}
-                alt="education"
-              />
+              <img src={require("./images/education.jpg")} alt="education" />
             </div>
           </div>
 
           <div className="column is-hidden-mobile">
             <div className="image">
-              <img src={require("./dummy_data/images/sales.jpg")} alt="sales" />
+              <img src={require("./images/sales.jpg")} alt="sales" />
             </div>
           </div>
 
           <div className="column is-hidden-mobile">
             <div className="image">
-              <img
-                src={require("./dummy_data/images/cooking.jpg")}
-                alt="cooking"
-              />
+              <img src={require("./images/cooking.jpg")} alt="cooking" />
             </div>
           </div>
         </div>
@@ -80,7 +97,7 @@ class Courses extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.courses.map(course => (
+              {this.props.courses.map(course => (
                 <tr key={course.id}>
                   <td className="hand" onClick={() => this.courseModal(course)}>
                     {course.title}
@@ -111,4 +128,10 @@ class Courses extends Component {
   }
 }
 
-export default Courses;
+const mapStateToProps = state => ({
+  courses: state.courses.courses,
+  loading: state.courses.loading,
+  error: state.courses.error
+});
+
+export default connect(mapStateToProps)(Courses);

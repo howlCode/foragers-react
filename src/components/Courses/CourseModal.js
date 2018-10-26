@@ -32,7 +32,7 @@ const CourseModal = props => {
         <p className="has-text-light has-text-centered course-description">
           {props.course.description}
         </p>
-        <p className="has-text-centered">
+        <p className="has-text-centered sign-up">
           <button className="button is-primary">Sign Up!</button>
         </p>
       </div>
