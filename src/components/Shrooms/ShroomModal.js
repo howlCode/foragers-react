@@ -10,7 +10,7 @@ const ShroomModal = props => {
     <div className="modal is-active">
       <div className="modal-background" />
       <div className="modal-content">
-        <p class="image is-4by3">
+        <p className="image is-4by3">
           <img
             className="shroom-image"
             src={props.shroom.image}

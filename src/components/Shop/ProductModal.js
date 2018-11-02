@@ -10,9 +10,9 @@ const ProductModal = props => {
     <div className="modal is-active">
       <div className="modal-background" />
       <div className="modal-content">
-        <p class="image">
+        <p className="image">
           <img
-            class="product-modal-image"
+            className="product-modal-image"
             src={props.product.image}
             alt={props.product.name}
           />
