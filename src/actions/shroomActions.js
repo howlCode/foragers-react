@@ -18,15 +18,18 @@ export const fetchShroomsError = error => ({
   payload: { error }
 });
 
-export function fetchShrooms() {
-  return dispatch => {
-    dispatch(fetchShroomsBegin());
-    return axios
-      .get("/api/shrooms")
-      .then(res => {
-        dispatch(fetchShroomsSuccess(res.data));
-        return res.data;
-      })
-      .catch(error => dispatch(fetchShroomsError(error)));
-  };
-}
+export const fetchShrooms = () => async dispatch => {
+  dispatch(fetchShroomsBegin());
+  return axios
+    .get("/api/shrooms")
+    .then(res => {
+      dispatch(fetchShroomsSuccess(res.data));
+      return res.data;
+    })
+    .catch(error => dispatch(fetchShroomsError(error)));
+};
+
+export const postShroom = (values, history) => async dispatch => {
+  const res = await axios.post("/api/shrooms", values);
+  history.push("/shrooms");
+};

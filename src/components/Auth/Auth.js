@@ -4,7 +4,7 @@ const Auth = props => {
   return (
     <section className="section">
       <div className="container has-text-centered">
-        <h1 className="title">Sign In and Start Creating!</h1>
+        <h1 className="title">Sign In!</h1>
         <h2 className="subtitle">Choose Your Provider:</h2>
         <a href="/auth/google">
           <img

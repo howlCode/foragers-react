@@ -65,7 +65,7 @@ class Shop extends Component {
       return (
         <section className="section">
           <div className="container">
-            <h1 className="title has-text-danger">Loading...</h1>
+            <p className="title loader" />
           </div>
         </section>
       );

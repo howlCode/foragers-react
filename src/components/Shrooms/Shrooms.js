@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Shrooms.css";
 import ShroomModal from "./ShroomModal";
 import { connect } from "react-redux";
@@ -64,7 +65,7 @@ class Shrooms extends Component {
       return (
         <section className="section">
           <div className="container">
-            <h1 className="title has-text-danger">Loading...</h1>
+            <p className="title loader" />
           </div>
         </section>
       );
@@ -88,6 +89,13 @@ class Shrooms extends Component {
                 </select>
               </div>
             </div>
+            <Link
+              to={"/shrooms/new"}
+              className="button is-primary"
+              style={{ marginLeft: "5px" }}
+            >
+              Add A Mushroom
+            </Link>
           </div>
 
           <div className="columns is-multiline">
