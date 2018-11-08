@@ -3,6 +3,7 @@ import "./Shop.css";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../actions/productActions";
 import ProductModal from "./ProductModal";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 class Shop extends Component {
   state = {
@@ -73,6 +74,7 @@ class Shop extends Component {
 
     return (
       <section className="section shop">
+        <ShoppingCart />
         <div className="field is-horizontal">
           <label className="label">Sort Products</label>
           <div className="has-text-centered control">

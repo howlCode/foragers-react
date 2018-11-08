@@ -1,18 +1,47 @@
 import React from "react";
 import "./ProductModal.css";
+import { connect } from "react-redux";
+import { addProducts } from "../../actions/shoppingActions";
+import { Link } from "react-router-dom";
 
 const ProductModal = props => {
   if (!props.show) {
     return null;
   }
 
+  const handleAdd = product => {
+    if (props.auth !== false) {
+      props.addProducts(product);
+      props.onClose();
+    }
+  };
+
+  const showAdd = () => {
+    if (props.auth !== false) {
+      return (
+        <button
+          className="button is-primary"
+          onClick={() => handleAdd(props.product)}
+        >
+          Add to Cart
+        </button>
+      );
+    } else {
+      return (
+        <Link to={"/portal"} className="button is-warning">
+          Log in to place an order
+        </Link>
+      );
+    }
+  };
+
   return (
     <div className="modal is-active">
       <div className="modal-background" />
       <div className="modal-content">
-        <p class="image">
+        <p className="image">
           <img
-            class="product-modal-image"
+            className="product-modal-image"
             src={props.product.image}
             alt={props.product.name}
           />
@@ -26,9 +55,7 @@ const ProductModal = props => {
         <p className="has-text-light has-text-centered description">
           {props.product.description}
         </p>
-        <p className="has-text-centered">
-          <button className="button is-primary">Add To Cart</button>
-        </p>
+        <p className="has-text-centered">{showAdd()}</p>
       </div>
       <button
         className="modal-close is-large"
@@ -39,4 +66,15 @@ const ProductModal = props => {
   );
 };
 
-export default ProductModal;
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+
+const mapDispatchToProps = dispatch => ({
+  addProducts: product => dispatch(addProducts(product))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductModal);

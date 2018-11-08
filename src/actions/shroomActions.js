@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FETCH_USER } from "./types";
 
 export const FETCH_SHROOMS_BEGIN = "FETCH_SHROOMS_BEGIN";
 export const FETCH_SHROOMS_SUCCESS = "FETCH_SHROOMS_SUCCESS";
@@ -30,6 +31,11 @@ export const fetchShrooms = () => async dispatch => {
 };
 
 export const postShroom = (values, history) => async dispatch => {
-  const res = await axios.post("/api/shrooms", values);
-  history.push("/shrooms");
+  try {
+    const res = await axios.post("/api/shrooms", values);
+    history.push("/shrooms");
+    dispatch({ type: FETCH_USER, payload: res.data });
+  } catch (error) {
+    return error;
+  }
 };
