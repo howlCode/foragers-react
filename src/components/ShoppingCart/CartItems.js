@@ -1,6 +1,7 @@
 import React from "react";
 import "./CartItems.css";
 import { connect } from "react-redux";
+import { removeProducts } from "../../actions/shoppingActions";
 
 const CartItems = props => {
   const subTotal = () => {
@@ -12,6 +13,10 @@ const CartItems = props => {
       });
     }
     return subtotal;
+  };
+
+  const handleRemove = product => {
+    props.removeProducts(product);
   };
 
   return (
@@ -28,6 +33,7 @@ const CartItems = props => {
               ${item.cost}
             </p>
             <p className="item-name">{item.name}</p>
+            <button onClick={() => handleRemove(item)}>Remove</button>
           </div>
         ))}
       </div>
@@ -39,4 +45,11 @@ const mapStateToProps = state => ({
   items: state.itemsInCart.itemsInCart
 });
 
-export default connect(mapStateToProps)(CartItems);
+const mapDispatchToProps = dispatch => ({
+  removeProducts: product => dispatch(removeProducts(product))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CartItems);
