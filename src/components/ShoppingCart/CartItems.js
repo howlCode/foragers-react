@@ -2,6 +2,7 @@ import React from "react";
 import "./CartItems.css";
 import { connect } from "react-redux";
 import { removeProducts } from "../../actions/shoppingActions";
+import { Link } from "react-router-dom";
 
 const CartItems = props => {
   const subTotal = () => {
@@ -12,7 +13,7 @@ const CartItems = props => {
         return subtotal;
       });
     }
-    return subtotal;
+    return subtotal.toFixed(2);
   };
 
   const handleRemove = product => {
@@ -23,17 +24,31 @@ const CartItems = props => {
     <div className="cart-items">
       <p className="cart-subtotal has-text-warning">
         Subtotal: ${subTotal()}{" "}
-        <span className="button is-primary checkout-button">Checkout</span>
+        {props.items.length > 0 ? (
+          <Link
+            to={"/checkout"}
+            className="button is-primary is-small checkout-button"
+          >
+            Checkout
+          </Link>
+        ) : (
+          <p>Your Cart is Empty</p>
+        )}
       </p>
       <div className="columns is-multiline">
         {props.items.map(item => (
-          <div className="column is-full cart-item">
+          <div className="column is-full cart-item" key={item.name}>
             <img src={item.image} alt={item.name} className="item-img" />
             <p className="item-price has-text-warning is-pulled-right">
               ${item.cost}
             </p>
             <p className="item-name">{item.name}</p>
-            <button onClick={() => handleRemove(item)}>Remove</button>
+            <button
+              className="remove-btn is-pulled-right"
+              onClick={() => handleRemove(item)}
+            >
+              Remove
+            </button>
           </div>
         ))}
       </div>

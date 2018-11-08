@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProductModal.css";
 import { connect } from "react-redux";
-import { addProducts } from "../../actions/shoppingActions";
+import { addProducts, removeProducts } from "../../actions/shoppingActions";
 import { Link } from "react-router-dom";
 
 const ProductModal = props => {
@@ -16,14 +16,30 @@ const ProductModal = props => {
     }
   };
 
-  const showAdd = () => {
+  const handleRemove = product => {
     if (props.auth !== false) {
+      props.removeProducts(product);
+      props.onClose();
+    }
+  };
+
+  const showAdd = product => {
+    if (props.auth !== false && !props.itemsInCart.includes(product)) {
       return (
         <button
           className="button is-primary"
           onClick={() => handleAdd(props.product)}
         >
           Add to Cart
+        </button>
+      );
+    } else if (props.itemsInCart.includes(product)) {
+      return (
+        <button
+          className="button is-warning"
+          onClick={() => handleRemove(props.product)}
+        >
+          Remove From Cart
         </button>
       );
     } else {
@@ -55,7 +71,7 @@ const ProductModal = props => {
         <p className="has-text-light has-text-centered description">
           {props.product.description}
         </p>
-        <p className="has-text-centered">{showAdd()}</p>
+        <p className="has-text-centered">{showAdd(props.product)}</p>
       </div>
       <button
         className="modal-close is-large"
@@ -66,12 +82,14 @@ const ProductModal = props => {
   );
 };
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
-};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  itemsInCart: state.itemsInCart.itemsInCart
+});
 
 const mapDispatchToProps = dispatch => ({
-  addProducts: product => dispatch(addProducts(product))
+  addProducts: product => dispatch(addProducts(product)),
+  removeProducts: product => dispatch(removeProducts(product))
 });
 
 export default connect(
