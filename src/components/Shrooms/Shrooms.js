@@ -72,7 +72,7 @@ class Shrooms extends Component {
     }
 
     return (
-      <section className="section">
+      <section className="section shroom-section">
         <div className="container is-fluid">
           <div className="field is-horizontal">
             <label className="label" style={{ marginRight: "20px" }}>
@@ -101,7 +101,7 @@ class Shrooms extends Component {
           <div className="columns is-multiline">
             {this.state.filteredShrooms.map(shroom => (
               <div
-                className="column is-one-third"
+                className="column is-one-third hand"
                 key={shroom.id}
                 onClick={() => this.shroomModal(shroom)}
               >

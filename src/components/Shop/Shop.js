@@ -74,7 +74,6 @@ class Shop extends Component {
 
     return (
       <section className="section shop">
-        <ShoppingCart />
         <div className="field is-horizontal">
           <label className="label">Sort Products</label>
           <div className="has-text-centered control">
@@ -87,6 +86,7 @@ class Shop extends Component {
               </select>
             </div>
           </div>
+          <ShoppingCart />
         </div>
         <div className="columns is-multiline">
           {this.state.filteredProducts.map(product => (

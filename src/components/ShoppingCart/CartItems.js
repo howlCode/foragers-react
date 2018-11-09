@@ -27,7 +27,7 @@ const CartItems = props => {
         {props.items.length > 0 ? (
           <Link
             to={"/checkout"}
-            className="button is-primary is-small checkout-button"
+            className="button is-primary is-small is-pulled-right checkout-button"
           >
             Checkout
           </Link>
@@ -44,7 +44,7 @@ const CartItems = props => {
             </p>
             <p className="item-name">{item.name}</p>
             <button
-              className="remove-btn is-pulled-right"
+              className="button is-danger is-small remove-btn is-pulled-right"
               onClick={() => handleRemove(item)}
             >
               Remove

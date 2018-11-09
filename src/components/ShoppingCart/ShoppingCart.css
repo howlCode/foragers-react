@@ -1,18 +1,14 @@
 .shopping-cart {
-  position: relative;
-  top: 20px;
-  right: -75%;
+  margin-left: 10px;
 }
 
 .cart-button {
   width: 200px;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 768px) {
   .shopping-cart {
-    top: -10px;
-    left: 0px;
-    margin: 0 auto;
-    text-align: center;
+    margin-top: 10px;
+    margin-left: 0px;
   }
 }

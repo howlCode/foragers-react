@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter } from "react-router-dom";
+import "./App.css";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
