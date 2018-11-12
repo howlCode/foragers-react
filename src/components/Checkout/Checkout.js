@@ -20,10 +20,6 @@ class Checkout extends Component {
     });
   };
 
-  handleSubmit() {
-    console.log(this.props.itemsInCart);
-  }
-
   render() {
     return (
       <section className="section">
@@ -53,17 +49,22 @@ class Checkout extends Component {
             ? `$ ${this.props.subTotal}`
             : null}
         </div>
-        <div className="change-order">
-          <Link to={"/shop"} className="button is-info is-pulled-left">
-            Go Back and Shop More
-          </Link>
-          <button
-            className="button is-success is-pulled-right"
-            onClick={() => this.handleSubmit()}
-          >
-            Submit Order
-          </button>
-        </div>
+        {this.props.itemsInCart.length > 0 ? (
+          <div className="change-order">
+            <Link to={"/shop"} className="button is-info is-pulled-left">
+              Go Back and Shop More
+            </Link>
+            <Link className="button is-success" to={"/checkout"}>
+              Continue To Checkout
+            </Link>
+          </div>
+        ) : (
+          <div className="change-order">
+            <Link to={"/shop"} className="button is-info">
+              Go Back and Shop More
+            </Link>
+          </div>
+        )}
         {this.state.product.length !== 0 ? (
           <ProductModal
             product={this.state.product}

@@ -15,7 +15,7 @@ const CartItems = props => {
         Subtotal: ${props.subTotal}{" "}
         {props.items.length > 0 ? (
           <Link
-            to={"/checkout"}
+            to={"/review-order"}
             className="button is-primary is-small is-pulled-right checkout-button"
           >
             Checkout
