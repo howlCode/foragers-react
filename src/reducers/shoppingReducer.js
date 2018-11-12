@@ -4,7 +4,8 @@ import {
 } from "../actions/shoppingActions";
 
 const initialState = {
-  itemsInCart: []
+  itemsInCart: [],
+  subTotal: 0
 };
 
 export default function shoppingReducer(state = initialState, action) {
@@ -14,7 +15,13 @@ export default function shoppingReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        itemsInCart: [...state.itemsInCart, action.payload.product]
+        itemsInCart: [...state.itemsInCart, action.payload.product],
+        subTotal: [...state.itemsInCart]
+          .reduce(
+            (total, item) => total + item.cost,
+            action.payload.product.cost
+          )
+          .toFixed(2)
       };
 
     case REMOVE_PRODUCT_FROM_CART_SUCCESS:
@@ -24,10 +31,16 @@ export default function shoppingReducer(state = initialState, action) {
         error: action.payload.error,
         itemsInCart: state.itemsInCart.filter(
           product => product !== action.payload.product
-        )
+        ),
+        subTotal: [...state.itemsInCart]
+          .reduce(
+            (total, item) => total - item.cost,
+            action.payload.product.cost
+          )
+          .toFixed(2)
       };
 
     default:
-      return state;
+      return { ...state };
   }
 }

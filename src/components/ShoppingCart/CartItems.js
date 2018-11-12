@@ -5,17 +5,6 @@ import { removeProducts } from "../../actions/shoppingActions";
 import { Link } from "react-router-dom";
 
 const CartItems = props => {
-  const subTotal = () => {
-    let subtotal = 0;
-    if (props.items.length > 0) {
-      props.items.map(item => {
-        subtotal += item.cost;
-        return subtotal;
-      });
-    }
-    return subtotal.toFixed(2);
-  };
-
   const handleRemove = product => {
     props.removeProducts(product);
   };
@@ -23,7 +12,7 @@ const CartItems = props => {
   return (
     <div className="cart-items">
       <p className="cart-subtotal has-text-warning">
-        Subtotal: ${subTotal()}{" "}
+        Subtotal: ${props.subTotal}{" "}
         {props.items.length > 0 ? (
           <Link
             to={"/checkout"}
@@ -57,7 +46,8 @@ const CartItems = props => {
 };
 
 const mapStateToProps = state => ({
-  items: state.itemsInCart.itemsInCart
+  items: state.itemsInCart.itemsInCart,
+  subTotal: state.itemsInCart.subTotal
 });
 
 const mapDispatchToProps = dispatch => ({

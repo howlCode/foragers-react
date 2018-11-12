@@ -20,17 +20,6 @@ class Checkout extends Component {
     });
   };
 
-  subTotal = () => {
-    let subtotal = 0;
-    if (this.props.itemsInCart.length > 0) {
-      this.props.itemsInCart.map(item => {
-        subtotal += item.cost;
-        return subtotal;
-      });
-    }
-    return `Subtotal: $ ${subtotal.toFixed(2)}`;
-  };
-
   handleSubmit() {
     console.log(this.props.itemsInCart);
   }
@@ -42,7 +31,7 @@ class Checkout extends Component {
           {this.props.itemsInCart.map(item => (
             <div className="column is-one-fifth checkout-item" key={item.name}>
               <ul>
-                <li onClick={() => this.productModal(item)}>
+                <li className="hand" onClick={() => this.productModal(item)}>
                   <figure className="image is-64x64">
                     <img src={item.image} alt={item.name} />
                   </figure>
@@ -51,7 +40,7 @@ class Checkout extends Component {
                   <p className="checkout-item-name">{item.name}</p>
                 </li>
                 <li>
-                  <p className="checkout-item-price has-text-warning">
+                  <p className="checkout-item-price has-text-info">
                     ${item.cost}
                   </p>
                 </li>
@@ -60,7 +49,9 @@ class Checkout extends Component {
           ))}
         </div>
         <div className="subtotal">
-          {this.props.itemsInCart.length > 0 ? this.subTotal() : null}
+          {this.props.itemsInCart.length > 0
+            ? `$ ${this.props.subTotal}`
+            : null}
         </div>
         <div className="change-order">
           <Link to={"/shop"} className="button is-info is-pulled-left">
@@ -87,7 +78,8 @@ class Checkout extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  itemsInCart: state.itemsInCart.itemsInCart
+  itemsInCart: state.itemsInCart.itemsInCart,
+  subTotal: state.itemsInCart.subTotal
 });
 
 const mapDispatchToProps = dispatch => ({
