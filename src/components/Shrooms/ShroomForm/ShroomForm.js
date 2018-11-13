@@ -1,8 +1,10 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import ShroomTextField from "./ShroomTextField";
 import ShroomCheckField from "./ShroomCheckField";
 import ShroomTextareaField from "./ShroomTextareaField";
+import formFields from "./formFields";
 
 class ShroomForm extends Component {
   render() {
@@ -52,7 +54,20 @@ class ShroomForm extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  _.each(formFields, ({ name }) => {
+    if (!values[name]) {
+      errors[name] = "You must provide a value";
+    }
+  });
+
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   form: "shroomForm",
   destroyOnUnmount: false
 })(ShroomForm);

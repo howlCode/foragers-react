@@ -1,6 +1,8 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import AddressTextField from "./AddressTextField";
+import formFields from "./formFields";
 
 class AddressForm extends Component {
   render() {
@@ -52,7 +54,20 @@ class AddressForm extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  _.each(formFields, ({ name }) => {
+    if (values[require] && !values[name]) {
+      errors[name] = "You must provide a value";
+    }
+  });
+
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   form: "addressForm",
   destroyOnUnmount: false
 })(AddressForm);

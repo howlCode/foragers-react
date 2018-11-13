@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import formFields from "./formFields";
 import { withRouter } from "react-router-dom";
-import * as actions from "../../../actions/shoppingActions";
 
 class AddressFormReview extends Component {
   reviewFields = _.map(formFields, ({ name, label }) => {
@@ -17,14 +16,6 @@ class AddressFormReview extends Component {
     );
   });
 
-  onSubmit = e => {
-    e.preventDefault();
-
-    const { submitOrder, history, formValues } = this.props;
-
-    submitOrder(formValues, history);
-  };
-
   render() {
     return (
       <section className="section">
@@ -37,9 +28,7 @@ class AddressFormReview extends Component {
         >
           Back
         </button>
-        <button onClick={this.onSubmit} className="button is-primary">
-          Submit Order
-        </button>
+        <button className="button is-primary">Submit Order</button>
       </section>
     );
   }
@@ -49,7 +38,4 @@ function mapStateToProps(state) {
   return { formValues: state.form.addressForm.values };
 }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(withRouter(AddressFormReview));
+export default connect(mapStateToProps)(withRouter(AddressFormReview));

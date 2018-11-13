@@ -14,7 +14,7 @@ import Shop from "./components/Shop/Shop";
 import Courses from "./components/Courses/Courses";
 import About from "./components/About/About";
 import Auth from "./components/Auth/Auth";
-import Checkout from "./components/Checkout/Checkout";
+import ReviewOrder from "./components/Checkout/ReviewOrder";
 import AddressNew from "./components/Checkout/AddressForm/AddressNew";
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
           <Route exact path="/shrooms" component={Shrooms} />
           <Route exact path="/shrooms/new" component={ShroomNew} />
           <Route path="/shop" component={Shop} />
-          <Route path="/review-order" component={Checkout} />
+          <Route path="/review-order" component={ReviewOrder} />
           <Route path="/checkout" component={AddressNew} />
           <Route path="/courses" component={Courses} />
           <Route path="/about" component={About} />

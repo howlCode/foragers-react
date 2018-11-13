@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./Checkout.css";
+import "./ReviewOrder.css";
 import { connect } from "react-redux";
 import ProductModal from "../Shop/ProductModal";
 import { Link } from "react-router-dom";
 
-class Checkout extends Component {
+class ReviewOrder extends Component {
   state = {
     product: [],
     isOpen: false
@@ -83,11 +83,4 @@ const mapStateToProps = state => ({
   subTotal: state.itemsInCart.subTotal
 });
 
-const mapDispatchToProps = dispatch => ({
-  // submitOrder: finalProducts => dispatch(submitOrder(finalProducts))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Checkout);
+export default connect(mapStateToProps)(ReviewOrder);
