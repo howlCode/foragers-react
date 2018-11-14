@@ -16,8 +16,6 @@ class AddressFormReview extends Component {
     );
   });
 
-  handleSubmit = () => {};
-
   render() {
     return (
       <section className="section has-text-centered">

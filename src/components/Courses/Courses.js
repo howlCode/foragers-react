@@ -109,7 +109,7 @@ class Courses extends Component {
                     {course.date} - {course.time}
                   </td>
                   <td>{this.courseStatus(course)}</td>
-                  <td>{course.cost}</td>
+                  <td>${course.cost}</td>
                 </tr>
               ))}
             </tbody>

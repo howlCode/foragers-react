@@ -1,6 +1,7 @@
 import React from "react";
 import "./CourseModal.css";
 import CourseMap from "./CourseMap";
+import CoursePayments from "./CoursePayments";
 
 const CourseModal = props => {
   if (!props.show) {
@@ -13,7 +14,7 @@ const CourseModal = props => {
       <div className="modal-content">
         <p className="has-text-light has-text-centered course-title">
           {props.course.title}{" "}
-          <span className="tag is-info">{props.course.cost}</span>
+          <span className="tag is-info">$ {props.course.cost}</span>
         </p>
         <p className="has-text-light has-text-centered is-italic date-time">
           {props.course.date} - {props.course.time} in {props.course.location}{" "}
@@ -32,9 +33,9 @@ const CourseModal = props => {
         <p className="has-text-light has-text-centered course-description">
           {props.course.description}
         </p>
-        <p className="has-text-centered sign-up">
-          <button className="button is-primary">Sign Up!</button>
-        </p>
+        <div className="has-text-centered sign-up">
+          <CoursePayments course={props.course} />
+        </div>
       </div>
       <button
         className="modal-close is-large"

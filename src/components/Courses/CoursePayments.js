@@ -3,20 +3,19 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import StripeCheckout from "react-stripe-checkout";
 
-class Payments extends Component {
+class CoursePayments extends Component {
   render() {
     return (
       <div style={{ marginLeft: "5px" }}>
         <StripeCheckout
           name="Foragers"
-          description="Order Payment"
-          amount={Math.round(this.props.subTotal * 100)}
+          description="Course Sign Up Fee"
+          amount={Math.round(this.props.course.cost * 100)}
           token={token =>
-            this.props.handleToken(
+            this.props.handleCourseToken(
               token,
-              Math.round(this.props.subTotal * 100),
-              this.props.itemsInCart,
-              this.props.formValues
+              this.props.course,
+              Math.round(this.props.course.cost * 100)
             )
           }
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
@@ -28,13 +27,7 @@ class Payments extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  subTotal: state.itemsInCart.subTotal,
-  itemsInCart: state.itemsInCart.itemsInCart,
-  formValues: state.form.addressForm.values
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   actions
-)(Payments);
+)(CoursePayments);
