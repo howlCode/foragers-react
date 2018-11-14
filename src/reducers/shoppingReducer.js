@@ -5,7 +5,8 @@ import {
 
 const initialState = {
   itemsInCart: [],
-  subTotal: 0
+  subTotal: 0,
+  total: 0
 };
 
 export default function shoppingReducer(state = initialState, action) {

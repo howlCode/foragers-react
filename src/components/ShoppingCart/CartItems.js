@@ -21,7 +21,7 @@ const CartItems = props => {
             Checkout
           </Link>
         ) : (
-          <p>Your Cart is Empty</p>
+          <span>Your Cart is Empty</span>
         )}
       </p>
       <div className="columns is-multiline">

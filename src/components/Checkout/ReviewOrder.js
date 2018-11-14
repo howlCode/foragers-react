@@ -46,7 +46,7 @@ class ReviewOrder extends Component {
         </div>
         <div className="subtotal">
           {this.props.itemsInCart.length > 0
-            ? `$ ${this.props.subTotal}`
+            ? `Subtotal: $ ${this.props.subTotal}`
             : null}
         </div>
         {this.props.itemsInCart.length > 0 ? (
@@ -54,8 +54,8 @@ class ReviewOrder extends Component {
             <Link to={"/shop"} className="button is-info is-pulled-left">
               Go Back and Shop More
             </Link>
-            <Link className="button is-success" to={"/checkout"}>
-              Continue To Checkout
+            <Link className="button is-primary" to={"/checkout"}>
+              Continue
             </Link>
           </div>
         ) : (

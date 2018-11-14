@@ -102,7 +102,7 @@ class Shrooms extends Component {
             {this.state.filteredShrooms.map(shroom => (
               <div
                 className="column is-one-third hand"
-                key={shroom.id}
+                key={shroom.common_name}
                 onClick={() => this.shroomModal(shroom)}
               >
                 <figure className="image is-5by4">

@@ -15,4 +15,9 @@
 .subtotal {
   font-weight: bold;
   font-size: 2rem;
+  margin: 0px 5px;
+}
+
+.change-order a {
+  margin: 5px 5px;
 }
