@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT_TO_CART_SUCCESS,
-  REMOVE_PRODUCT_FROM_CART_SUCCESS
+  REMOVE_PRODUCT_FROM_CART_SUCCESS,
+  ORDER_SUCCESS
 } from "../actions/shoppingActions";
 
 const initialState = {
@@ -39,6 +40,12 @@ export default function shoppingReducer(state = initialState, action) {
             action.payload.product.cost
           )
           .toFixed(2)
+      };
+
+    case ORDER_SUCCESS:
+      return {
+        ...state,
+        initialState
       };
 
     default:

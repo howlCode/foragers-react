@@ -16,6 +16,7 @@ import About from "./components/About/About";
 import Auth from "./components/Auth/Auth";
 import ReviewOrder from "./components/Checkout/ReviewOrder";
 import AddressNew from "./components/Checkout/AddressForm/AddressNew";
+import Success from "./components/Checkout/Success";
 
 class App extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/shop" component={Shop} />
           <Route path="/review-order" component={ReviewOrder} />
           <Route path="/checkout" component={AddressNew} />
+          <Route exact path="/success" component={Success} />
           <Route path="/courses" component={Courses} />
           <Route path="/about" component={About} />
           <Route path="/portal" component={Auth} />

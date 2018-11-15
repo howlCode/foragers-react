@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import StripeCheckout from "react-stripe-checkout";
+import { withRouter } from "react-router-dom";
 
 class CoursePayments extends Component {
   render() {
@@ -19,15 +20,18 @@ class CoursePayments extends Component {
             )
           }
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
+          closed={() => this.props.history.push("/success")}
         >
-          <button className="button is-primary">Pay For Order</button>
+          <button className="button is-primary">Sign Up</button>
         </StripeCheckout>
       </div>
     );
   }
 }
 
-export default connect(
-  null,
-  actions
-)(CoursePayments);
+export default withRouter(
+  connect(
+    null,
+    actions
+  )(CoursePayments)
+);
