@@ -23,6 +23,7 @@ class ReviewOrder extends Component {
   render() {
     return (
       <section className="section">
+        <h1 className="title">Review Your Order</h1>
         <div className="columns is-multiline">
           {this.props.itemsInCart.map(item => (
             <div className="column is-one-fifth checkout-item" key={item.name}>

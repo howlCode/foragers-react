@@ -2,11 +2,25 @@ import React from "react";
 import "./CourseModal.css";
 import CourseMap from "./CourseMap";
 import CoursePayments from "./CoursePayments";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const CourseModal = props => {
   if (!props.show) {
     return null;
   }
+
+  const showSignUp = course => {
+    if (props.auth !== false) {
+      return <CoursePayments course={course} />;
+    } else {
+      return (
+        <Link to={"/portal"} className="button is-warning">
+          Log in to sign up
+        </Link>
+      );
+    }
+  };
 
   return (
     <div className="modal is-active">
@@ -34,7 +48,7 @@ const CourseModal = props => {
           {props.course.description}
         </p>
         <div className="has-text-centered sign-up">
-          <CoursePayments course={props.course} />
+          {showSignUp(props.course)}
         </div>
       </div>
       <button
@@ -46,4 +60,8 @@ const CourseModal = props => {
   );
 };
 
-export default CourseModal;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(CourseModal);
