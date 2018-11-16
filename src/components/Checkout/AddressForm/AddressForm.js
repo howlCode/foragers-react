@@ -20,13 +20,6 @@ class AddressForm extends Component {
           <Field
             component={AddressTextField}
             type="text"
-            label="Line 2 (if needed)"
-            name="address_line_two"
-            placeholder="Apt # 3..."
-          />
-          <Field
-            component={AddressTextField}
-            type="text"
             label="City"
             name="city"
             placeholder="Your city name..."
@@ -58,7 +51,7 @@ function validate(values) {
   const errors = {};
 
   _.each(formFields, ({ name }) => {
-    if (values[require] && !values[name]) {
+    if (!values[name]) {
       errors[name] = "You must provide a value";
     }
   });

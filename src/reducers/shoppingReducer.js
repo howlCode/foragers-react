@@ -45,7 +45,9 @@ export default function shoppingReducer(state = initialState, action) {
     case ORDER_SUCCESS:
       return {
         ...state,
-        initialState
+        itemsInCart: [],
+        subTotal: 0,
+        total: 0
       };
 
     default:
