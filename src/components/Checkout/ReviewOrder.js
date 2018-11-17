@@ -29,7 +29,7 @@ class ReviewOrder extends Component {
             <div className="column is-one-fifth checkout-item" key={item.name}>
               <ul>
                 <li className="hand" onClick={() => this.productModal(item)}>
-                  <figure className="image is-64x64">
+                  <figure className="image is-64x64 review-img">
                     <img src={item.image} alt={item.name} />
                   </figure>
                 </li>
@@ -52,7 +52,7 @@ class ReviewOrder extends Component {
         </div>
         {this.props.itemsInCart.length > 0 ? (
           <div className="change-order">
-            <Link to={"/shop"} className="button is-info is-pulled-left">
+            <Link to={"/shop"} className="button is-warning is-pulled-left">
               Go Back and Shop More
             </Link>
             <Link className="button is-primary" to={"/checkout"}>
@@ -61,7 +61,7 @@ class ReviewOrder extends Component {
           </div>
         ) : (
           <div className="change-order">
-            <Link to={"/shop"} className="button is-info">
+            <Link to={"/shop"} className="button is-warning">
               Go Back and Shop More
             </Link>
           </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ShoppingCart.css";
 import CartItems from "./CartItems";
+import { connect } from "react-redux";
 
 class ShoppingCart extends Component {
   state = {
@@ -11,19 +12,41 @@ class ShoppingCart extends Component {
     this.setState({ expanded: !this.state.expanded });
   };
 
+  cartStatus = () => {
+    if (this.props.items.length > 0) {
+      return (
+        <div className="shopping-cart">
+          <button
+            className="button is-primary populated-cart cart-button"
+            onClick={this.toggleShowContents}
+          >
+            <i className="fas fa-shopping-cart" />
+          </button>
+          {this.state.expanded ? <CartItems /> : null}
+        </div>
+      );
+    } else {
+      return (
+        <div className="shopping-cart">
+          <button
+            className="button is-dark empty-cart cart-button"
+            onClick={this.toggleShowContents}
+          >
+            <i className="fas fa-shopping-cart" />
+          </button>
+          {this.state.expanded ? <CartItems /> : null}
+        </div>
+      );
+    }
+  };
+
   render() {
-    return (
-      <div className="shopping-cart">
-        <button
-          className="button is-primary cart-button"
-          onClick={this.toggleShowContents}
-        >
-          <i className="fas fa-shopping-cart" />
-        </button>
-        {this.state.expanded ? <CartItems /> : null}
-      </div>
-    );
+    return this.cartStatus();
   }
 }
 
-export default ShoppingCart;
+const mapStateToProps = state => ({
+  items: state.itemsInCart.itemsInCart
+});
+
+export default connect(mapStateToProps)(ShoppingCart);

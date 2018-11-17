@@ -1,6 +1,7 @@
 .checkout-item {
   border: 1px dotted #000;
   margin: 5px 5px;
+  text-align: center;
 }
 
 .checkout-item-name {
@@ -20,4 +21,14 @@
 
 .change-order a {
   margin: 5px 5px;
+}
+
+.review-img {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.review-img > img {
+  max-height: 84px;
 }
